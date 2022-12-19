@@ -34,6 +34,5 @@
     <form action="logout.php" action="get">
         <input type="submit" value="LOGOUT" name="logout">
     </form>
-    <!-- <button action="logout.php" method="get" name="logout">LOGOUT</button> -->
 </body>
 </html>
