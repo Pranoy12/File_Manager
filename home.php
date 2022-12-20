@@ -25,7 +25,7 @@
     <h1> WELCOME <?php
         echo $_SESSION['username'];
         ?>  
-    </h1>
+    </h1>   
     <?php echo $_SESSION['success'];
         ?>
     <br>

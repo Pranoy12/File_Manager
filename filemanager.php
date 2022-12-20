@@ -2,8 +2,22 @@
 include "DBModel.php";
 $currentFolder = null;
 
+session_start();
+if(!isset($_SESSION['username']))
+    {
+        $_SESSION['msg'] = 'You must login first';
+        header('location : login.php');
+    }
+    if(isset($_GET['logout']))
+    {
+        session_destroy();
+        unset($_SESSION['username']);
+        header('location:login.php');
+    }
+
 define("WEBSITE_BASE_PATH","http://localhost:80/File_Manager/");
 
+// print($_SESSION['userid']);
 
 function get_random_name($num = 6){
   $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -55,7 +69,8 @@ function save_to_file_manager($filename, $realfilename, $type, $size, $folder){
     'real_name'=> $realfilename,
     'file_size' => $size,
     'file_type' => $type,
-    'folder'=> $folder
+    'folder'=> $folder,
+    'user_id' => $_SESSION['userid']
   ]);
 }
 
@@ -63,26 +78,29 @@ function save_a_folder($name, $parent){
   $model = new DBModel("file_manager_folder");
   $model->insertRecord([
     'name' => $name,
-    'parent' => $parent
+    'parent' => $parent,
+    'user_id' => $_SESSION['userid']
   ]);
 }
 
 
 function get_all_files(){
   $model = new DBModel("file_manager");
+  $id=$_SESSION['userid'];
   if(in_folder()){
-    return $model->getAllBySQL("SELECT * from file_manager Where folder=?",[get_folder_id()]);
+    return $model->getAllBySQL("SELECT * from file_manager Where user_id=$id AND folder=?",[get_folder_id()]);
   }else{
-    return $model->getAllBySQL("SELECT * from file_manager Where folder=0 OR folder IS NULL");
+    return $model->getAllBySQL("SELECT * from file_manager Where user_id=$id AND (folder=0 OR folder IS NULL)");
   }
 }
 
 function get_all_parent_folders(){
   $model = new DBModel("file_manager");
+  $id=$_SESSION['userid'];
   if(in_folder()){
-    return $model->getAllBySQL("SELECT * from file_manager_folder WHERE parent=?",[get_folder_id()]);
+    return $model->getAllBySQL("SELECT * from file_manager_folder WHERE user_id=$id AND parent=?",[get_folder_id()]);
   }else{
-    return $model->getAllBySQL("SELECT * from file_manager_folder WHERE parent IS NULL");
+    return $model->getAllBySQL("SELECT * from file_manager_folder WHERE user_id=$id AND parent IS NULL");
   }
 }
 
@@ -333,7 +351,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && $_GET['actio
                deleteItem(id, ftype);
             }}
         }
-        // there's more, have a look at the demos and docs...
       });
     }
 
@@ -388,6 +405,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && $_GET['actio
 
   });
 </script>
+<form action="logout.php" action="get">
+        <input type="submit" value="LOGOUT" name="logout">
+</form>
 
 </body>
 </html>

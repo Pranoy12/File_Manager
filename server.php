@@ -72,10 +72,17 @@
             $pass = md5($password); //encrypting password
             $reg_query = "INSERT INTO users (username,email,pass) VALUES ('$username','$email','$pass')";
             $reg_query_result = $conn ->query($reg_query);
+            $in_query = "SELECT * FROM users WHERE username='$username' AND pass='$pass'";
+            $in_query_result = $conn ->query($in_query);
+            while($row = $in_query_result ->fetch_assoc())
+                {
+                    $id = $row['id'];
+                }
+            $_SESSION['userid']=$id;
             //initializing session variables
             $_SESSION['username'] = $username;
             $_SESSION['success'] = "You are now logged in";
-            header('location: home.php');
+            header('location: filemanager.php');
         }
         else
         {
@@ -110,7 +117,12 @@
             {
                 $_SESSION['username']=$username;
                 $_SESSION['success']="You are now logged in";
-                header('location: home.php');
+                while($row = $login_qeury_result ->fetch_assoc())
+                {
+                    $id = $row['id'];
+                }
+                $_SESSION['userid']=$id;
+                header('location: filemanager.php');
             }
             else
             {
