@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <style type="text/css" >
-        .form-login{
+    <title>Register Page</title>
+    <style>
+    .form-signup{
         margin: 0 auto;
         max-width: 400px;
         text-align: left;
@@ -16,25 +16,36 @@
         }
         body{
             
-            background:url('/bg1.jpg');
+            background:url('bg6.jfif');
             background-size: cover;
-        }
+        } 
         input {
             float:right;
             display:inline-block;
         }
         h1{
-          text-color: black;  
+            font-family: 'Cinzel', serif;
+            font-family: 'Teko', sans-serif;
+            font-size: 48px;
+            color:lightblue;
         }
-        .login-button{
-            background-color:lightblue;
+        .register_button{
+            background-color: lightblue;
+        }
+        section{
+          color: lightblue;
         }
         </style>
 </head>
 <body>
-    <form action="login.php" method="post" class="form-login">
-        <h1>LOGIN</h1>
-        Name: <input type="text" name="user">
+    <form action="register.php" method="post" class="form-signup">
+        <h1>REGISTER</h1>
+        <section>
+        User Name: <input type="text" name="user">
+        <br>
+        <br>
+        <br>
+        Email: <input type="email" name="email">
         <br>
         <br>
         <br>
@@ -42,8 +53,13 @@
         <br>
         <br>
         <br>
-        <input type="submit" value="LOGIN" name="login" class="login-button">
-        <p> Not a member? <a href="register.php">Register</a>
+        Confirm Password: <input type="password" name="confirm_pass">
+        <br>
+        <br>
+        <br>
+        <input type="submit" name="reg" value="REGISTER" class="register_button">
+        <p> Already a member? <a href="login.php">Login</a>
+    </section>
     </form>
 </body>
 </html>
