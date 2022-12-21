@@ -154,7 +154,7 @@ function get_icon($type, $name=""){
   }else if(strpos($type, 'audio') !== false){
     return "<img src='ic_music.png' style='width: 20px'/>";
   }else if(strpos($type, 'pdf') !== false){
-    return "<img src='ic_pdf.png' style='width: 20px'/>";
+    return "<img src='file-pdf-solid.svg' style='width: 16px'/>";
   }else if(strpos($type, 'openxmlformats') !== false){
     if(strpos($name, 'doc') !== false){
       return "<img src='ic_word.png' style='width: 20px'/>";
@@ -265,19 +265,171 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && $_GET['actio
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha512-zP5W8791v1A6FToy+viyoyUUyjCzx+4K8XZCKzW28AnCoepPNIXecxh9mvGuy3Rt78OzEsU+VCvcObwAMvBAww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <style>
+ *, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(71,102,149);
+background: linear-gradient(90deg, rgba(71,102,149,1) 0%, rgba(22,57,69,1) 61%, rgba(18,9,41,1) 100%);
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+} 
   table {
     width: 100%;
   }
   table, th, td {
 
   }
+ .fileform{
+   text-align: center;
+   padding-top:100px;
+   color:#1BD5E5;
+ }
+ h1{
+  text-align: center;
+  background: #13CFA3;
+background: linear-gradient(to right, #13CFA3 47%, #133766 90%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-weight:bold;
+font-size:50px;
+ }
+ .para1{
+  text-align:center;
+  padding-top:30px;
+  color:#1BD5E5; 
+ }
+ .form {
+  width: 300px;
+  padding: 150px 15px 24px;
+  margin: 0 auto;
+}
+.form .control {
+  margin: 0 0 24px;
+}
+.form .control input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+}
+.form .control input:hover, .form .control input:focus {
+  outline: none;
+  border: 0;
+}
+.form .btn {
+  width: 100%;
+  display: block;
+  padding: 14px 16px;
+  background: transparent;
+  outline: none;
+  border: 0;
+  color: #fff;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.block-cube {
+  position: relative;
+}
+.block-cube .bg-top {
+  position: absolute;
+  height: 10px;
+  background: #020024;
+  background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+  bottom: 100%;
+  left: 5px;
+  right: -5px;
+  transform: skew(-45deg, 0);
+  margin: 0;
+}
+.block-cube .bg-top .bg-inner {
+  bottom: 0;
+}
+.block-cube .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(71,145,149);
+background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, rgba(88,17,77,1) 100%);;
+}
+.block-cube .bg-right {
+  position: absolute;
+  background: #020024;
+  background: #00d4ff;
+  top: -5px;
+  z-index: 0;
+  bottom: 5px;
+  width: 10px;
+  left: 100%;
+  transform: skew(0, -45deg);
+}
+.block-cube .bg-right .bg-inner {
+  left: 0;
+}
+.block-cube .bg .bg-inner {
+  transition: all 0.2s ease-in-out;
+}
+.block-cube .bg-inner {
+  background: #212121;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+}
+.block-cube .text {
+  position: relative;
+  z-index: 2;
+}
+.block-cube.block-input input {
+  position: relative;
+  z-index: 2;
+}
+.block-cube.block-input input:focus ~ .bg-right .bg-inner, .block-cube.block-input input:focus ~ .bg-top .bg-inner, .block-cube.block-input input:focus ~ .bg-inner .bg-inner {
+  top: 100%;
+  background: rgba(255,0,207,1);
+}
+.block-cube.block-input .bg-top,
+.block-cube.block-input .bg-right,
+.block-cube.block-input .bg {
+  background: rgba(255,0,207,1);
+  transition: background 0.2s ease-in-out;
+}
+.block-cube.block-input .bg-right .bg-inner,
+.block-cube.block-input .bg-top .bg-inner {
+  transition: all 0.2s ease-in-out;
+}
+.block-cube.block-input:focus .bg-top,
+.block-cube.block-input:focus .bg-right,
+.block-cube.block-input:focus .bg, .block-cube.block-input:hover .bg-top,
+.block-cube.block-input:hover .bg-right,
+.block-cube.block-input:hover .bg {
+  background: rgba(255, 255, 255, 0.8);
+}
+.block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
+  top: 100%;
+}
 </style>
 <body>
 <h1>File Manager</h1>
-<p>Add a file</p>
-<form method="post" enctype="multipart/form-data">
+<p class="para1">Add a file</p>
+<form method="post" enctype="multipart/form-data" class="fileform">
   File: <input type="file" name="file"/>&nbsp;&nbsp;
   Folder: <input type="text" name="folder">&nbsp;&nbsp;
+  <br>
+  <br>
+  <br>
   <button type="submit" name="submit">Submit</button>
 </form>
 
@@ -296,13 +448,13 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && $_GET['actio
   <tbody>
       <?php if(in_folder()):?>
         <tr>
-          <td colspan="4"><img src='ic_folder.png' style='width: 20px'/> &nbsp;
+          <td colspan="4"><img src='folder-open-solid.svg' style='width: 20px'/> &nbsp;
             <a href="<?php echo parent_up_url();?>">...</a></td>
         </tr>
       <?php endif;?>
       <?php foreach(get_all_parent_folders() as $folderObject):?>
         <tr>
-          <td><img src='ic_folder.png' style='width: 20px'/> &nbsp;
+          <td><img src='folder-open-solid.svg' style='width: 20px'/> &nbsp;
             <a data-id="<?php echo $folderObject["id"];?>" data-type="folder" data-filename="<?php echo $folderObject["name"];?>" class="item" href="<?php echo create_url('filemanager.php',['id'=>$folderObject["id"]]);?>">
               <?php echo $folderObject["name"];?></a>
           </td>
@@ -405,8 +557,22 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && $_GET['actio
 
   });
 </script>
-<form action="logout.php" action="get">
-        <input type="submit" value="LOGOUT" name="logout">
+<form action="logout.php" method="get" class="form">
+<button class='btn block-cube block-cube-hover' type='submit' name="logout">
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='text'>
+      Logout
+    </div>
+  </button>   
+        <!-- <input type="submit" value="LOGOUT" name="logout"> -->
 </form>
 
 </body>
