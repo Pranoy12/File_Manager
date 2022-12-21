@@ -17,17 +17,18 @@
         }
         body{
             
-            background-color: black;
+            background:url('/bg2.jpg');
+            background-size: cover;
         }
         input {
             float:right;
             display:inline-block;
         }
         h1{
-          text-color: blue;  
+          text-color: black;  
         }
         .register_button{
-            background-color: green;
+            background-color: lightblue;
         }
         </style>
 </head>
