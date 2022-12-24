@@ -420,17 +420,47 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
 .block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
   top: 100%;
 }
+
+
+
+
+
+.Example-btn8{ 
+ font-family: Koulen; 
+ font-weight: 0;
+ font-size: 20px;
+ color: #000000;
+ background-color: #ffffff;
+ padding: 5px 50px;
+ border: solid #000000 2px;
+ box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+ border-radius: 1px;
+ transition : 1000ms;
+ transform: translateY(0);
+ text-transform: uppercase;
+ }
+ 
+ .Example-btn8:hover{ 
+ transition : 1000ms; 
+ padding: 10px 44px; 
+ transform : translateY(-0px);
+ background-color: #000000;
+ color: #ffffff;
+ border: solid 2px #ffffff;
+ }
+ 
 </style>
 <body>
 <h1>File Manager</h1>
 <p class="para1">Add a file</p>
-<form method="post" enctype="multipart/form-data" class="fileform">
-  File: <input type="file" name="file"/>&nbsp;&nbsp;
-  Folder: <input type="text" name="folder">&nbsp;&nbsp;
+<form method="post" enctype="multipart/form-data" class="fileform" style="padding-right:100px;">
+  <input type="file" name="file"/>
+  OR &nbsp;&nbsp;&nbsp;&nbsp;
+  Folder: <input type="text" name="folder">
   <br>
   <br>
   <br>
-  <button type="submit" name="submit">Submit</button>
+  <button class='Example-btn8' type="submit" name="submit">Submit</button>
 </form>
 
 <br><br>
@@ -501,7 +531,8 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
               var ftype = $(this).attr('data-type');
               var fname = $(this).attr('data-filename');
                deleteItem(id, ftype);
-            }}
+            }},
+          // "download": {name: "Download",icon:'remove'}
         }
       });
     }
@@ -558,7 +589,7 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
   });
 </script>
 <form action="logout.php" method="get" class="form">
-<button class='btn block-cube block-cube-hover' type='submit' name="logout">
+<button class='Example-btn8' type='submit' name="logout">
     <div class='bg-top'>
       <div class='bg-inner'></div>
     </div>
