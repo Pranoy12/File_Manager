@@ -253,6 +253,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['action']) && $_GET['actio
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script src="https://use.fontawesome.com/3903c9d7fd.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
   <title>File Manager</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.css" integrity="sha512-EF5k2tHv4ShZB7zESroCVlbLaZq2n8t1i8mr32tgX0cyoHc3GfxuP7IoT8w/pD+vyoq7ye//qkFEqQao7Ofrag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css" integrity="sha512-0V10q+b1Iumz67sVDL8LPFZEEavo6H/nBSyghr7mm9JEQkOAm91HNoZQRvQdjennBb/oEuW+8oZHVpIKq+d25g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -289,12 +291,13 @@ background: linear-gradient(90deg, rgba(71,102,149,1) 0%, rgba(22,57,69,1) 61%, 
  }
  h1{
   text-align: center;
-  background: #13CFA3;
-background: linear-gradient(to right, #13CFA3 47%, #133766 90%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-font-weight:bold;
-font-size:50px;
+  /* background: #13CFA3;
+background: linear-gradient(to right, #13CFA3 47%, #133766 90%); */
+/* -webkit-background-clip: text;
+-webkit-text-fill-color: transparent; */
+/* font-weight:bold;
+font-size:50px; */
+  padding-right: 90px;
  }
  .para1{
   text-align:center;
@@ -451,8 +454,14 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
  
 </style>
 <body>
-<h1>File Manager</h1>
-<p class="para1">Add a file</p>
+<h1>
+  <!-- <video width-"250px" height="250px" controls loop>
+    <source src="FileCloud.mp4">
+    NOT SUPPORTED
+  </video> -->
+  <img src="FileCloud.png" style="width: 200px; height: 200px" />
+</h1>
+<!-- <p class="para1">Add a file</p> -->
 <form method="post" enctype="multipart/form-data" class="fileform" style="padding-right:100px;">
   <input type="file" name="file"/>
   OR &nbsp;&nbsp;&nbsp;&nbsp;
@@ -461,10 +470,27 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
   <br>
   <br>
   <button class='Example-btn8' type="submit" name="submit">Submit</button>
+  <form action="logout.php" method="get" class="form">
+<button class='Example-btn8' type='submit' name="logout">
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='text'>
+      Logout
+    </div>
+  </button>   
+        <!-- <input type="submit" value="LOGOUT" name="logout"> -->
+</form>
 </form>
 
 <br><br>
-<h2><a href="<?Php echo create_url("filemanager.php");?>">Files and Folders</a> <?php echo get_current_folder_name();?></h2>
+<h2><a href="<?Php echo create_url("filemanager.php");?>"><img src="house-user-solid.svg" style="width : 20px"></a> Files And Folders <?php echo get_current_folder_name();?></h2>
 
 <table>
   <thead>
@@ -588,23 +614,6 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
 
   });
 </script>
-<form action="logout.php" method="get" class="form">
-<button class='Example-btn8' type='submit' name="logout">
-    <div class='bg-top'>
-      <div class='bg-inner'></div>
-    </div>
-    <div class='bg-right'>
-      <div class='bg-inner'></div>
-    </div>
-    <div class='bg'>
-      <div class='bg-inner'></div>
-    </div>
-    <div class='text'>
-      Logout
-    </div>
-  </button>   
-        <!-- <input type="submit" value="LOGOUT" name="logout"> -->
-</form>
 
 </body>
 </html>
