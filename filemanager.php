@@ -299,6 +299,11 @@ background: linear-gradient(to right, #13CFA3 47%, #133766 90%); */
 font-size:50px; */
   padding-right: 90px;
  }
+
+ .logo{
+  text-align: center;
+  padding-right: 90px;
+ }
  .para1{
   text-align:center;
   padding-top:30px;
@@ -456,13 +461,16 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
  
 </style>
 <body>
-<h1>
-  <!-- <video width-"250px" height="250px" controls loop>
+<!-- <h1>
+  <video width-"250px" height="250px" controls loop>
     <source src="FileCloud.mp4">
     NOT SUPPORTED
-  </video> -->
+  </video> 
   <img src="FileCloud.png" style="width: 200px; height: 200px" />
-</h1>
+</h1> -->
+<div class="logo">
+  <img src="FileCloud.png" style="width: 200px;" />
+</div>
 <!-- <p class="para1">Add a file</p> -->
 <form method="post" enctype="multipart/form-data" class="fileform" style="padding-right:100px;">
   <input type="file" name="file"/>
