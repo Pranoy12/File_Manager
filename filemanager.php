@@ -306,7 +306,9 @@ font-size:50px; */
  }
  .form {
   width: 300px;
-  padding: 150px 15px 24px;
+  /* padding: 150px 15px 24px; */
+  padding-top: 20px;
+  padding-left: 7px;
   margin: 0 auto;
 }
 .form .control {
@@ -470,23 +472,39 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
   <br>
   <br>
   <button class='Example-btn8' type="submit" name="submit">Submit</button>
-  <form action="logout.php" method="get" class="form">
-<button class='Example-btn8' type='submit' name="logout">
-    <div class='bg-top'>
-      <div class='bg-inner'></div>
-    </div>
-    <div class='bg-right'>
-      <div class='bg-inner'></div>
-    </div>
-    <div class='bg'>
-      <div class='bg-inner'></div>
-    </div>
-    <div class='text'>
-      Logout
-    </div>
-  </button>   
-        <!-- <input type="submit" value="LOGOUT" name="logout"> -->
+  <!-- <a href="logout.php">
+    <button class='Example-btn8' type='submit' name="logout">
+      <div class='bg-top'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg-right'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='text'>
+        Logout
+      </div>
+    </button>    
+  </a> -->
 </form>
+<form action="logout.php" method="get" class="form">
+  <button class='Example-btn8' type='submit' name="logout">
+      <div class='bg-top'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg-right'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='bg'>
+        <div class='bg-inner'></div>
+      </div>
+      <div class='text'>
+        Logout
+      </div>
+    </button>   
+       <!-- <input type="submit" value="LOGOUT" name="logout">  -->
 </form>
 
 <br><br>
@@ -614,7 +632,6 @@ background: linear-gradient(90deg, rgba(71,145,149,1) 0%, rgba(4,25,32,1) 55%, r
 
   });
 </script>
-
 </body>
 </html>
 
